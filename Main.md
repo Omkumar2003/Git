@@ -186,3 +186,58 @@ how to remove a key
 ```
 git config --unset <key>
 ```
+
+
+# CH -5 (BRANCH)
+
+### TIP (TRY THESE)
+https://git-school.github.io/visualizing-git/
+https://learngitbranching.js.org/
+#### vs code mein ye extension
+git-log--graph
+
+*********************************************************
+<b>
+ <i>
+A branch is just a named pointer to a specific commit.
+ </i></b>
+*****************************************************
+### Tip
+Remember, you should be on master because we set init.defaultBranch to master 
+
+## How to rename a branch
+```
+git branch -m oldname newname
+```
+
+## New Branch
+You should already be on the main branch: your "default" branch. You can always check with git branch.
+
+Two Ways to Create a Branch
+
+```
+git branch my_new_branch
+```
+
+Switch is the prefered version
+```
+git switch -c my_new_branch
+```
+
+
+# CH -6 (MERGE)
+
+https://youtu.be/BAtW9n5FgLM
+
+Run git log ```--oneline --graph --all``` and you should see a nice ASCII art representation of your commit history.
+
+```
+git merge anotherBranchName
+```
+
+
+YAAD RKHNA HAI KI AGAR TUNE EK BRANCH "A" SE DUSRI BRANCH "B" NIKALI AUR "A" MEIN TUNE KOI ABHI TAK COMMIT NHI KRA BUT TU "B" MEIN COMMIT KI BARSAAT KR RHA HAI TO GIT AUTOMATICALLY "A" JAHAN BRANCH NIKLI THI THA USS JAGAH KO CHANGE KR KE "B" KE HEAD PE LE AAYEGA
+
+
+## Fast Forward Merge
+Because "B" has all the commits that "A" has, Git automatically does a fast-forward merge. It just moves the pointer of the "base" branch to the tip of the "feature" branch:
