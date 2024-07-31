@@ -2,7 +2,7 @@
 To read this you should have the basic knowledge of git .This repo goes in advance topic 
 All git important commands and information
 
-# CH -1 ()
+# CH -1 (Intro)
 Git is the distributed version control system (VCS).
 
 ## Porcelain and Plumbing
@@ -97,3 +97,92 @@ git --no-pager log -n 10
 ```
 
 
+# Ch-3 (INTERNALS)
+
+## Different Hashes
+
+ While commit hashes are derived from their content changes, there's also some other stuff that affects the end hash. For example:
+
+<li>The commit message</li>
+<li>The author's name and email</li>
+<li>The date and time</li>
+<li>Parent (previous) commit hashes</li>
+
+### Note: Hash = SHA
+Git uses a cryptographic hash function called SHA-1 to generate commit hashes. We won't go into the details of how SHA-1 works in this course, but it's important to know because you might also hear commit hashes referred to as "SHAs".
+
+## The Plumbing
+
+HAR EK CHIZ FILE HAI 
+
+https://www.youtube.com/watch?v=MyvyqdQ3OjI&t
+
+It's just files all the way down
+All the data in a Git repository is stored directly in the (hidden) .git directory. That includes all the commits, branches, tags, and other objects we'll learn about later.
+
+Git is made up of objects that are stored in the .git/objects directory. A commit is just a type of object.
+
+
+GO EXPLORE THIS AND FIND PATTERNS ...........YOU WILL KNOW WHAT I AM TALKING ABOUT
+
+```
+git cat-file -p <hash>
+```
+commit hash daalega to tree milega .....tree hash daalega to to blob milega ......blob ko agar cat krega to saare diffrences milenge 
+
+
+## Storing Data
+Git stores an entire snapshot of files on a per-commit level. This was a surprise to me! I always assumed each commit only stored the changes made in that commit.
+
+### Optimization
+While it's true that Git stores entire snapshots, it does have some performance optimizations so that your .git directory doesn't get too unbearably large.
+
+Git compresses and packs files to store them more efficiently.
+Git deduplicates files that are the same across different commits. If a file doesn't change between commits, Git will only store it once.
+
+# CH- 4 (CONFIG)
+![ConfigScope](/configScope.png)
+
+There are several locations where Git can be configured. From more general to more specific, they are:
+
+<li>system: /etc/gitconfig, a file that configures Git for all users on the system</li>
+<li>global: ~/.gitconfig, a file that configures Git for all projects of a user</li>
+<li>local: .git/config, a file that configures Git for a specific project</li>
+<li>worktree: .git/config.worktree, a file that configures Git for part of a project</li>
+
+90% of the time you will be using --global to set things like your username and email. The other 9% of the time you will be using --local to set project-specific configurations. The last 1% of the time you might need to futz with system and worktree configurations, but it's extremely rare.
+
+```
+git config --add --global user.name "naam"
+git config --add --global user.email "email@dalde.bhai"
+```
+
+AGAR UPAR WALI CMD MEIN GLOBAL NHI LIKHEGA TO WO LOCAL SCOPE KI SET KREGI 
+
+Let's take the command apart:
+
+<li>git config: The command to interact with your Git configuration.</li>
+<li>--add: Flag stating you want to add a configuration.<li>
+<li>--global: Flag stating you want this configuration to be stored globally in your ~/.gitconfig. The opposite is "local", which stores the configuration in the current repository<li>
+
+COMMAND RUN KRTE WAQAT KUCH AISA HOGA ....SABSE PHELA WORKTREE MEIN SEARCH KREGA .....AGAR NHI MILA TO LOCAL MEIN ...USMEIN NHI MILA TO GLOBAL MEIN.....AGAR USMEIN NHI MILA TO SYSTEM MEIN.
+
+this will show local scope config
+```
+cat .git/config
+```
+this will show global level config
+```
+cat ~/.gitconfig
+```
+
+How to remove Section in git config
+```
+git config --remove-section section
+```
+
+
+how to remove a key 
+```
+git config --unset <key>
+```
