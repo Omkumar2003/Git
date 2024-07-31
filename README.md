@@ -241,3 +241,57 @@ YAAD RKHNA HAI KI AGAR TUNE EK BRANCH "A" SE DUSRI BRANCH "B" NIKALI AUR "A" MEI
 
 ## Fast Forward Merge
 Because "B" has all the commits that "A" has, Git automatically does a fast-forward merge. It just moves the pointer of the "base" branch to the tip of the "feature" branch:
+
+# CH -7 (REBASE) ***MOST IMPORTANT***
+
+https://youtu.be/nHcfoHOW4uA
+
+basically  Fast Forward Merge hi hai but ismein hum explicitly bol rhe hein ki fast forward wala diagram lga 
+
+```
+git rebase main
+```
+
+![Rebase](/Rebase.png)
+
+## When to Rebase
+git rebase and git merge are different tools.
+
+An advantage of merge is that it preserves the true history of the project. It shows when branches were merged and where. One disadvantage is that it can create a lot of merge commits, which can make the history harder to read and understand.
+
+A linear history is generally easier to read, understand, and work with. Some teams enforce the usage of one or the other on their main branch, but generally speaking, you'll be able to do whatever you want with your own branches.
+
+## Warning
+You should never rebase a public branch (like main) onto anything else. Other developers have it checked out, and if you change its history, you'll cause a lot of problems for them.
+
+However, with your own branch, you can rebase onto other branches (including a public branch like main) as much as you want.
+
+# CH -8 (RESET)
+
+## Git Reset Soft
+The git reset command can be used to undo the last commit(s) or any changes in the index (staged but not committed changes) and the worktree (unstaged and not committed changes).
+```
+git reset --soft HEAD~1
+```
+The --soft option is useful if you just want to go back to a previous commit, but keep all of your changes. Committed changes will be uncommitted and staged, while uncommitted changes will remain staged or unstaged as before. HEAD~1 refers to the commit 1 before the current commit.
+
+```
+git reset --soft <hash>
+```
+
+## Git Reset Hard .... *** DANGER *** 
+
+### Danger
+I want to stress how dangerous this command can be. When you deleted the file, because it was tracked in Git, it was trivially easy to recover. However, if you have some changes that you do want to keep, running git reset --hard will delete them for good.
+
+Always be careful when using git reset --hard. It's a powerful tool, but it's also a dangerous one.
+
+### Reset to a Specific Commit
+If you want to reset back to a specific commit, you can use the git reset --hard command and provide a commit hash. For example:
+```
+git reset --hard a1b2c3d
+```
+This will reset your working directory and index to the state of that commit, and all the changes made after that commit are lost forever.
+
+
+
