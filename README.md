@@ -295,3 +295,128 @@ This will reset your working directory and index to the state of that commit, an
 
 
 
+# CH -9 (REMOTE)
+
+This is where the "distributed" in "distributed version control system" comes from. We can have "remotes", which are just external repos with mostly the same Git history as our local repo.
+
+https://youtu.be/lR_hYwCAaH4?si=8jW29vUCh_nJ9n8F
+
+When it comes to Git (the CLI tool), there really isn't a "central" repo. GitHub is just someone else's repo. Only by convention and convenience have we, as developers, started to use GitHub as a "source of truth" for our code.
+
+## ADDING REMOTE
+
+In git, another repo is called a "remote." The standard convention is that when you're treating the remote as the "authoritative source of truth" (such as GitHub) you would name it the "origin".
+
+By "authoritative source of truth" we mean that it's the one you and your team treat as the "true" repo. It's the one that contains the most up-to-date version of the accepted code.
+
+Command Syntax
+```
+git remote add <name> <uri>
+```
+ye yaad rkhna hai ki uri location hai yaani online bhi ho skti hai ya to aisi bhi C:/users/om/demo
+
+## Fetch 
+Adding a remote to our Git repo does not mean that we automagically have all the contents of the remote. First, we need to fetch the contents.
+***************************************************
+fetch ka matlab hai ki hmare paas saara metadata aajeyga ...........but sirf iss command ko use krne se kuch nhi hoga worktree ko
+This downloads copies of all the contents of the .git/objects directory (and other book-keeping information) from the remote repository into your current one.
+to iska faayda kya hai ???
+git log will not show commits until we explicitly say ``` git log remote/branch ``` , ye kyuin chal paa rha hai because we downloaded meta data with the help of fetch command 
+***********************************************
+https://youtu.be/5o9ltH6YmtM?si=PhAENEXjwjMWA1P8
+
+## merge 
+
+To actually get the chages in our repo , we use 
+```git merge remote/branch```
+
+
+# CH -10 (GITHUB)
+
+GitHub is the most popular website for Git repositories (projects) online. That is, for hosting "remotes" on a central website. GitHub serves several purposes:
+
+As a backup of all your code on the cloud in case something happens to your computer
+As a central place to share your code and collaborate on it with others
+As a public portfolio for your coding projects
+
+## Git != GitHub
+It's important to understand that Git and GitHub are not the same! Git is an open-source command line tool for managing code files. GitHub and its primary competitors, GitLab and Bitbucket, are commercial web products that use Git. Their websites give us a way to store our code that's managed by Git.
+
+
+## Github Repo 
+https://cli.github.com/
+
+https://youtu.be/5o9ltH6YmtM?si=HCbwtDM3KH-obxQv
+
+## Git push
+```
+git push origin main
+```
+
+You can also push a local branch to a remote with a different name:
+```
+git push origin <localbranch>:<remotebranch>
+```
+
+It's less common to do this, but nice to know.
+
+You can also delete a remote branch by pushing an empty branch to it:
+
+```
+git push origin :<remotebranch>
+```
+
+
+## PULL
+Fetching is nice, but most of the time we want the actual file changes from a remote repo, not just the metadata.
+
+```
+git pull [<remote>/<branch>]
+```
+
+The syntax [...] means that the bracketed remote and branch are optional. If you execute git pull without anything specified it will pull your current branch from the remote repo.
+
+
+## Pull Requests
+On GitHub, a pull request is a way to propose some changes. It's very common to use pull requests if you want to make changes to an open source project, or if you're working on a team.
+
+Pull requests allow team members to see what changes are being proposed and to discuss them before they are merged into the main codebase.
+
+
+## My Workflow
+We've covered a lot of Git basics. There's certainly more you can learn, but this will give you a solid foundation to work with as a developer.
+
+All that said, I want to leave you with a note on my simple workflow. 90% Of the time, you're only using a handful of git commands to get your coding work done.
+
+### Keep stuff on GitHub
+I keep all my serious projects on GitHub. That way if my computer explodes, I have a backup, and if I'm ever on another computer, I can just clone the repo and get back to work.
+
+### Rebase vs Merge
+I've configured Git to rebase by default on pull, rather than merge so I keep a linear history. If you want to do the same, you can add this to your global Git config:
+
+```
+git config --global pull.rebase true
+```
+### My Solo Workflow
+When I'm working by myself, I usually stick to a single branch, main. I mostly use Git on solo projects to keep a backup remotely and to keep a history of my changes. I only rarely use separate branches.
+
+Make changes to files
+git add . (or git add <files> if I only want to add specific files)
+git commit -m "a message describing the changes"
+git push origin main
+It really is that simple for most solo work. git log, git reset, and some others are of course useful from time to time, but the above is the core of what I do day-to-day.
+
+## My Team Workflow
+When you're working with a team Git gets a bit more involved (and we'll cover more of this in part 2 of this course). Here's what I do:
+
+Update my local main branch with git pull origin main
+Checkout a new branch for the changes I want to make with git switch -c <branchname>
+Make changes to files
+git add .
+git commit -m "a message describing the changes"
+git push origin <branchname> (I push to the new branch name, not main)
+Open a pull request on GitHub to merge my changes into main
+Ask a team member to review my pull request
+Once approved, click the "Merge" button on GitHub to merge my changes into main
+Delete my feature branch, and repeat with a new branch for the next set of changes
+
