@@ -420,3 +420,72 @@ Ask a team member to review my pull request
 Once approved, click the "Merge" button on GitHub to merge my changes into main
 Delete my feature branch, and repeat with a new branch for the next set of changes
 
+
+
+# CH -11 (GITIGNORE)
+
+![jokesWritesItself.png](/jokesWritesItself.png)
+
+It's fairly common to have multiple .gitignore files in different directories throughout a project. A nested .gitignore file only applies to the directory it's in and its subdirectories.
+
+```
+src/
+├── assets/
+│   ├── .gitignore
+|   ├── cover_art.jpg
+│   └── onlydevs.png
+├── main.py
+├── tests.py
+├── venv/
+│   └── bin/
+|       ├── activate
+│       └── python
+.gitignore
+```
+
+
+
+## Patterns
+
+### Wildcards
+
+The * character matches any number of characters except for a slash (/). For example, to ignore all .txt files, you could use the following pattern:
+```
+*.txt
+```
+### Rooted Patterns
+Patterns starting with a / are anchored to the directory containing the .gitignore file. For example, this would ignore a main.py in the root directory, but not in any subdirectories:
+
+```
+/main.py
+```
+
+### Negation
+You can negate a pattern by prefixing it with an exclamation mark (!). For example, to ignore all .txt files except for important.txt, you could use the following pattern:
+
+```
+*.txt
+!important.txt
+```
+
+### Comments
+
+You can add comments to your .gitignore file by starting a line with a #. For example:
+
+```
+# Ignore all .txt files
+*.txt
+```
+
+
+## What to ignore
+We've talked about how to ignore files, but the deeper question is what should you ignore? Here are some rules of thumb for coding projects:
+
+<li>Ignore things that can be generated (e.g. compiled code, minified files, etc.)</li>
+<li>Ignore dependencies (e.g. node_modules, venv, packages, etc.)</li>
+<li>Ignore things that are personal or specific to how you like to work (e.g. editor settings)</li>
+<li>Ignore things that are sensitive or dangerous (e.g. .env files, passwords, API keys, etc.)</li>
+
+
+
+
