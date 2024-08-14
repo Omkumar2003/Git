@@ -2,6 +2,8 @@
 To read this you should have the basic knowledge of git .This repo goes in advance topic 
 All git important commands and information
 
+![GitLogo](https://book.git-scm.com/images/logos/downloads/Git-Logo-2Color.svg)
+
 # CH -1 (Intro)
 Git is the distributed version control system (VCS).
 
