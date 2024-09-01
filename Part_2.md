@@ -83,7 +83,7 @@ ijk
 ```
 fgh wala apna commit hai ......aur ijk wala dusra ka commit 
 
-Your editor might even highlight the conflict markers to make it easier to see, but at the end of the day, it's just text. The top section, between the <<<<<<< HEAD and ======= lines, is our branch's version of the file. The bottom section, between the ======= and >>>>>>> main lines, is the version of the file that's on the main branch ("theirs" or as I say "Stupid Greg's").
+Your editor might even highlight the conflict markers to make it easier to see, but at the end of the day, it's just text. The top section, between the ```<<<<<<< HEAD``` and ```======= ```lines, is our branch's version of the file. The bottom section, between the ```=======``` and ```>>>>>>>``` main lines, is the version of the file that's on the main branch ("theirs" or as I say "Stupid Greg's").
 
 In many cases, you might want to keep one change and discard the other. That's common when you're dealing with code changes. In this case, we're dealing with content, so we want to keep both changes.
 
@@ -154,9 +154,9 @@ If you join a team that prefers a single commit, you will need to know how to "s
 ## How to Squash
 Perhaps confusingly, squashing is done with the git rebase command! Here are the steps to squash the last n commits:
 
-<li>Start an interactive rebase with the command git rebase -i HEAD~n, where n is the number of commits you want to squash.</li>
-<li>Git will open your default editor with a list of commits. Change the word pick to squash for all but the first commit.</li>
-<li>Save and close the editor.</li>
+-  Start an interactive rebase with the command git rebase -i HEAD~n, where n is the number of commits you want to squash.
+-  Git will open your default editor with a list of commits. Change the word pick to squash for all but the first commit.
+-  Save and close the editor.
 The -i flag stands for "interactive," and it allows us to edit the commit history before Git applies the changes. HEAD~n is how we reference the last n commits. HEAD points to the current commit (as long as we're in a clean state) and ~n means "n commits before HEAD."
 
 ## Why does rebase squash?
@@ -470,4 +470,3 @@ Each part is a number that starts at 0 and increments upward forever. The rules 
 To sort them from highest to lowest, you first compare the major versions, then the minor versions, and finally the patch versions. For example, a major version of 2 is always greater than a major version of 1, regardless of the minor and patch versions.
 
 As a special case, major version 0 is typically considered to be pre-release software and thus the rules are more relaxed.
-
