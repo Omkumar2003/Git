@@ -33,10 +33,10 @@ We'll focus on the high-level commands because that's what you use 99% of the ti
 #### Status
 A file can be in one of several states in a Git repository. Here are a few important ones:
 
-<li>untracked: Not being tracked by Git</li>
-<li>staged: Marked for inclusion in the next commit</li>
-<li>committed: Saved to the repository's history</li>
-<li>The git status command shows you the current state of your repo. It will tell you which files are untracked, staged, and committed.</li>
+-  untracked: Not being tracked by Git
+-  staged: Marked for inclusion in the next commit
+-  committed: Saved to the repository's history
+-  The git status command shows you the current state of your repo. It will tell you which files are untracked, staged, and committed.
 
 ```
 git status
@@ -69,28 +69,28 @@ You've learned half of Git.
 ...well, not really. But kind of.
 
 Half of your workflow as a developer will just be 3 simple commands:
-
+```
 git status
 git add
 git commit
+```
 It's most of what you need to work effectively as a solo developer. Another 40% of Git is about collaborating and storing your work on a remote server.
 
-The last 10% is mostly about fixing mistakes, rolling back changes, and other advanced topics. Don't worry, we'll cover those too.
+The last 10% is mostly about fixing mistakes, rolling back changes, and other advanced topics. 
 
 ## Git Log
 A Git repo is a (potentially very long) list of commits, where each commit represents the full state of the repository at a given point in time.
 
 The git log command shows a history of the commits in a repository. This is what makes Git a version control system. You can see:
-<li>Who made a commit</li>
-<li>When the commit was made</li>
-<li>What was changed</li>
+-  Who made a commit
+-  When the commit was made
+-  What was changed
 
 we all have lisented about OBSERVABILITY in distrubuted system it can be done with help of logging(haan metrics se bhi kar skte hein)
 
 Each commit has a unique identifier called a "commit hash". This is a long string of characters that uniquely identifies the commit. Here's an example of mine:
 
-You can give whole hash or just fir 7 char =arctes to git .....it will work 
-
+You can give whole hash or just first 7 chararctes to git .....it will work 
 
  use the -n and --no-pager options to limit the maximum number of commits shown, and more importantly, to run it without the interactive pager. E.g.:
 
@@ -105,17 +105,17 @@ git --no-pager log -n 10
 
  While commit hashes are derived from their content changes, there's also some other stuff that affects the end hash. For example:
 
-<li>The commit message</li>
-<li>The author's name and email</li>
-<li>The date and time</li>
-<li>Parent (previous) commit hashes</li>
+-  The commit message
+-  The author's name and email
+-  The date and time
+-  Parent (previous) commit hashes
 
 ### Note: Hash = SHA
 Git uses a cryptographic hash function called SHA-1 to generate commit hashes. We won't go into the details of how SHA-1 works in this course, but it's important to know because you might also hear commit hashes referred to as "SHAs".
 
 ## The Plumbing
 
-HAR EK CHIZ FILE HAI 
+HAR EK CHIZ FILE HAI. EVERYTHING IS CODE
 
 https://www.youtube.com/watch?v=MyvyqdQ3OjI&t
 
@@ -147,10 +147,10 @@ Git deduplicates files that are the same across different commits. If a file doe
 
 There are several locations where Git can be configured. From more general to more specific, they are:
 
-<li>system: /etc/gitconfig, a file that configures Git for all users on the system</li>
-<li>global: ~/.gitconfig, a file that configures Git for all projects of a user</li>
-<li>local: .git/config, a file that configures Git for a specific project</li>
-<li>worktree: .git/config.worktree, a file that configures Git for part of a project</li>
+-  **system:** /etc/gitconfig, a file that configures Git for all users on the system
+-  **global:** ~/.gitconfig, a file that configures Git for all projects of a user
+-  **local:** .git/config, a file that configures Git for a specific project
+-  **worktree:** .git/config.worktree, a file that configures Git for part of a project
 
 90% of the time you will be using --global to set things like your username and email. The other 9% of the time you will be using --local to set project-specific configurations. The last 1% of the time you might need to futz with system and worktree configurations, but it's extremely rare.
 
@@ -163,9 +163,9 @@ AGAR UPAR WALI CMD MEIN GLOBAL NHI LIKHEGA TO WO LOCAL SCOPE KI SET KREGI
 
 Let's take the command apart:
 
-<li>git config: The command to interact with your Git configuration.</li>
-<li>--add: Flag stating you want to add a configuration.<li>
-<li>--global: Flag stating you want this configuration to be stored globally in your ~/.gitconfig. The opposite is "local", which stores the configuration in the current repository<li>
+-  **git config:** The command to interact with your Git configuration.
+-  **--add:** Flag stating you want to add a configuration.-  
+-  **--global:** Flag stating you want this configuration to be stored globally in your ~/.gitconfig. The opposite is "local", which stores the configuration in the current repository-  
 
 COMMAND RUN KRTE WAQAT KUCH AISA HOGA ....SABSE PHELA WORKTREE MEIN SEARCH KREGA .....AGAR NHI MILA TO LOCAL MEIN ...USMEIN NHI MILA TO GLOBAL MEIN.....AGAR USMEIN NHI MILA TO SYSTEM MEIN.
 
@@ -195,15 +195,10 @@ git config --unset <key>
 ### TIP (TRY THESE)
 https://git-school.github.io/visualizing-git/
 https://learngitbranching.js.org/
-#### vs code mein ye extension
-git-log--graph
 
-*********************************************************
-<b>
- <i>
-A branch is just a named pointer to a specific commit.
- </i></b>
-*****************************************************
+**vs code mein ye extension** ```git-log--graph```
+
+***A branch is just a named pointer to a specific commit***
 ### Tip
 Remember, you should be on master because we set init.defaultBranch to master 
 
@@ -215,7 +210,7 @@ git branch -m oldname newname
 ## New Branch
 You should already be on the main branch: your "default" branch. You can always check with git branch.
 
-Two Ways to Create a Branch
+2 Ways to Create a Branch
 
 ```
 git branch my_new_branch
@@ -257,7 +252,8 @@ git rebase main
 ![Rebase](/Rebase.png)
 
 ## When to Rebase
-git rebase and git merge are different tools.
+
+***git rebase and git merge are different tools.***
 
 An advantage of merge is that it preserves the true history of the project. It shows when branches were merged and where. One disadvantage is that it can create a lot of merge commits, which can make the history harder to read and understand.
 
@@ -281,7 +277,7 @@ The --soft option is useful if you just want to go back to a previous commit, bu
 git reset --soft <hash>
 ```
 
-## Git Reset Hard .... *** DANGER *** 
+## Git Reset Hard .... ***DANGER*** 
 
 ### Danger
 I want to stress how dangerous this command can be. When you deleted the file, because it was tracked in Git, it was trivially easy to recover. However, if you have some changes that you do want to keep, running git reset --hard will delete them for good.
@@ -315,16 +311,16 @@ Command Syntax
 ```
 git remote add <name> <uri>
 ```
-ye yaad rkhna hai ki uri location hai yaani online bhi ho skti hai ya to aisi bhi C:/users/om/demo
+ye yaad rkhna hai ki uri location hai yaani online bhi ho skti hai ya to aisi bhi ``` C:/users/om/demo```
 
 ## Fetch 
 Adding a remote to our Git repo does not mean that we automagically have all the contents of the remote. First, we need to fetch the contents.
-***************************************************
+
 fetch ka matlab hai ki hmare paas saara metadata aajeyga ...........but sirf iss command ko use krne se kuch nhi hoga worktree ko
 This downloads copies of all the contents of the .git/objects directory (and other book-keeping information) from the remote repository into your current one.
 to iska faayda kya hai ???
 git log will not show commits until we explicitly say ``` git log remote/branch ``` , ye kyuin chal paa rha hai because we downloaded meta data with the help of fetch command 
-***********************************************
+
 https://youtu.be/5o9ltH6YmtM?si=PhAENEXjwjMWA1P8
 
 ## merge 
@@ -337,9 +333,9 @@ To actually get the chages in our repo , we use
 
 GitHub is the most popular website for Git repositories (projects) online. That is, for hosting "remotes" on a central website. GitHub serves several purposes:
 
-As a backup of all your code on the cloud in case something happens to your computer
-As a central place to share your code and collaborate on it with others
-As a public portfolio for your coding projects
+- As a backup of all your code on the cloud in case something happens to your computer
+- As a central place to share your code and collaborate on it with others
+- As a public portfolio for your coding projects
 
 ## Git != GitHub
 It's important to understand that Git and GitHub are not the same! Git is an open-source command line tool for managing code files. GitHub and its primary competitors, GitLab and Bitbucket, are commercial web products that use Git. Their websites give us a way to store our code that's managed by Git.
@@ -401,16 +397,17 @@ git config --global pull.rebase true
 ```
 ### My Solo Workflow
 When I'm working by myself, I usually stick to a single branch, main. I mostly use Git on solo projects to keep a backup remotely and to keep a history of my changes. I only rarely use separate branches.
-
+```
 Make changes to files
 git add . (or git add <files> if I only want to add specific files)
 git commit -m "a message describing the changes"
 git push origin main
 It really is that simple for most solo work. git log, git reset, and some others are of course useful from time to time, but the above is the core of what I do day-to-day.
+```
 
 ## My Team Workflow
 When you're working with a team Git gets a bit more involved (and we'll cover more of this in part 2 of this course). Here's what I do:
-
+```
 Update my local main branch with git pull origin main
 Checkout a new branch for the changes I want to make with git switch -c <branchname>
 Make changes to files
@@ -421,7 +418,7 @@ Open a pull request on GitHub to merge my changes into main
 Ask a team member to review my pull request
 Once approved, click the "Merge" button on GitHub to merge my changes into main
 Delete my feature branch, and repeat with a new branch for the next set of changes
-
+```
 
 
 # CH -11 (GITIGNORE)
@@ -483,10 +480,10 @@ You can add comments to your .gitignore file by starting a line with a #. For ex
 ## What to ignore
 We've talked about how to ignore files, but the deeper question is what should you ignore? Here are some rules of thumb for coding projects:
 
-<li>Ignore things that can be generated (e.g. compiled code, minified files, etc.)</li>
-<li>Ignore dependencies (e.g. node_modules, venv, packages, etc.)</li>
-<li>Ignore things that are personal or specific to how you like to work (e.g. editor settings)</li>
-<li>Ignore things that are sensitive or dangerous (e.g. .env files, passwords, API keys, etc.)</li>
+-  Ignore things that can be generated (e.g. compiled code, minified files, etc.)
+-  Ignore dependencies (e.g. node_modules, venv, packages, etc.)
+-  Ignore things that are personal or specific to how you like to work (e.g. editor settings)
+-  Ignore things that are sensitive or dangerous (e.g. .env files, passwords, API keys, etc.)
 
 
 
