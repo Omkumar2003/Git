@@ -470,3 +470,10 @@ Each part is a number that starts at 0 and increments upward forever. The rules 
 To sort them from highest to lowest, you first compare the major versions, then the minor versions, and finally the patch versions. For example, a major version of 2 is always greater than a major version of 1, regardless of the minor and patch versions.
 
 As a special case, major version 0 is typically considered to be pre-release software and thus the rules are more relaxed.
+
+
+# CH-12 (Git SubModules)
+
+
+https://git-scm.com/book/en/v2/Git-Tools-Submodules
+https://www.youtube.com/watch?v=gSlXo2iLBro
